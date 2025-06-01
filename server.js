@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./src/db/conexao.js');
+const {swaggerUi, swaggerSpec } = require('./src/docs/swagger.js')
 const usuarioRouter = require('./src/routes/user.route.js');
 const casoRouter = require('./src/routes/caso.route.js');
 const evidenciaRouter = require('./src/routes/evidencia.route.js');
@@ -13,6 +14,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 
 
