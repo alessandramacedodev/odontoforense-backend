@@ -70,7 +70,7 @@ CLOUDINARY_URL=
 npm run dev
 ```
 
-A aplicação estará disponível em: http://localhost:3000
+A aplicação estará disponível em: https://odontoforense-backend-wur1.onrender.com/ e http://localhost:3000 de forma local
 
 ---
 
