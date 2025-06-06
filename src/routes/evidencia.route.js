@@ -4,50 +4,49 @@ const { authenticate, authorize } = require('../middlewares/auth')
 const upload = require('../middlewares/upload')
 const router = express.Router()
 
-
 /**
  * @swagger
  * tags:
- *   name: Evidência
- *   description: API para gerenciamento de evidências
+ *   name: evidencia
+ *   description: API para gerenciamento de evidencia
  */
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Evidencia:
+ *     evidencia:
  *       type: object
  *       properties:
  *         _id:
  *           type: string
- *           description: ID da evidência (gerado automaticamente)
+ *           description: ID da evidencia (gerado automaticamente)
  *         nomeDaEvidencia:
  *           type: string
- *           description: Nome da evidência
+ *           description: Nome da evidencia
  *         categoria:
  *           type: string
- *           description: Categoria da evidência (ex: imagem, vídeo, documento)
+ *           description: "Categoria da evidencia (ex: imagem, vídeo, documento)"
  *         dataDaColeta:
  *           type: string
  *           format: date
- *           description: Data da coleta da evidência
+ *           description: Data da coleta da evidencia
  *         descricao:
  *           type: string
- *           description: Descrição da evidência
+ *           description: Descrição da evidencia
  *         localDaRetirada:
  *           type: string
- *           description: Local onde a evidência foi coletada
+ *           description: Local onde a evidencia foi coletada
  *         fileUrl:
  *           type: string
- *           description: URL do arquivo da evidência
+ *           description: URL do arquivo da evidencia
  */
 
 /**
  * @swagger
  * /api/evidencia:
  *   post:
- *     summary: Cria uma nova evidência
+ *     summary: Cria uma nova evidencia
  *     tags: [evidencia]
  *     requestBody:
  *       required: true
@@ -74,7 +73,7 @@ const router = express.Router()
  *                 type: string
  *     responses:
  *       201:
- *         description: Evidência adicionada com sucesso
+ *         description: evidencia adicionada com sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -83,83 +82,83 @@ const router = express.Router()
  *                 message:
  *                   type: string
  *                 evidence:
- *                   $ref: '#/components/schemas/Evidencia'
+ *                   $ref: '#/components/schemas/evidencia'
  *       400:
  *         description: Dados inválidos ou ausentes
  *       500:
- *         description: Erro ao adicionar evidência
+ *         description: Erro ao adicionar evidencia
  */
-router.post( '/', authenticate, authorize(['admin', 'perito', 'assistente']), upload.single('file'), EvidenciaController.createEvidencia) 
+router.post('/', authenticate, authorize(['admin', 'perito', 'assistente']), upload.single('file'), EvidenciaController.createEvidencia)
 
 /**
  * @swagger
- * /api/evidences:
+ * /api/evidencia:
  *   get:
- *     summary: Lista todas as evidências
- *     tags: [Evidência]
+ *     summary: Lista todas as evidencias
+ *     tags: [evidencia]
  *     responses:
  *       200:
- *         description: Lista de evidências retornada com sucesso
+ *         description: Lista de evidencias retornada com sucesso
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Evidencia'
+ *                 $ref: '#/components/schemas/evidencia'
  *       500:
- *         description: Erro ao listar as evidências
+ *         description: Erro ao listar as evidencias
  */
-router.get('/',authenticate,authorize(['admin', 'perito', 'assistente']),EvidenciaController.getEvidencia)
+router.get('/', authenticate, authorize(['admin', 'perito', 'assistente']), EvidenciaController.getEvidencia)
 
 /**
  * @swagger
- * /api/evidences/{id}:
+ * /api/evidencia/{id}:
  *   get:
- *     summary: Retorna uma evidência pelo ID
- *     tags: [Evidência]
+ *     summary: Retorna uma evidencia pelo ID
+ *     tags: [evidencia]
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         description: ID da evidência
+ *         description: ID da evidencia
  *     responses:
  *       200:
- *         description: Evidência encontrada
+ *         description: evidencia encontrada
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Evidencia'
+ *               $ref: '#/components/schemas/evidencia'
  *       404:
- *         description: Evidência não encontrada
+ *         description: evidencia não encontrada
  *       500:
- *         description: Erro ao buscar evidência
+ *         description: Erro ao buscar evidencia
  */
-router.get('/:id',authenticate,authorize(['admin','perito','assistente']),EvidenciaController.getEvidenciaById)
+router.get('/:id', authenticate, authorize(['admin', 'perito', 'assistente']), EvidenciaController.getEvidenciaById)
 
 /**
  * @swagger
- * /api/evidences/{id}:
+ * /api/evidencia/{id}:
  *   put:
- *     summary: Atualiza uma evidência existente
- *     tags: [Evidência]
+ *     summary: Atualiza uma evidencia existente
+ *     tags: [evidencia]
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         description: ID da evidência a ser atualizada
+ *         description: ID da evidencia a ser atualizada
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Evidencia'
+ *             $ref: '#/components/schemas/evidencia'
  *     responses:
  *       200:
- *         description: Evidência atualizada com sucesso
+ *         description: evidencia atualizada com sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -168,50 +167,50 @@ router.get('/:id',authenticate,authorize(['admin','perito','assistente']),Eviden
  *                 message:
  *                   type: string
  *                 updatedEvidence:
- *                   $ref: '#/components/schemas/Evidencia'
+ *                   $ref: '#/components/schemas/evidencia'
  *       400:
- *         description: ID inválido ou evidência não encontrada
+ *         description: ID inválido ou evidencia não encontrada
  *       500:
- *         description: Erro ao atualizar evidência
+ *         description: Erro ao atualizar evidencia
  */
-router.put('/:id',authenticate,authorize(['admin', 'perito', 'assistente']),EvidenciaController.updateEvidencia)
-
+router.put('/:id', authenticate, authorize(['admin', 'perito', 'assistente']), EvidenciaController.updateEvidencia)
 
 /**
  * @swagger
- * /api/evidences/{id}:
+ * /api/evidencia/{id}:
  *   delete:
- *     summary: Deleta uma evidência pelo ID
- *     tags: [Evidência]
+ *     summary: Deleta uma evidencia pelo ID
+ *     tags: [evidencia]
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
  *         schema:
  *           type: string
- *         description: ID da evidência a ser deletada
+ *         description: ID da evidencia a ser deletada
  *     responses:
  *       200:
- *         description: Evidência deletada com sucesso
+ *         description: evidencia deletada com sucesso
  *       404:
- *         description: Evidência não encontrada
+ *         description: evidencia não encontrada
  *       500:
- *         description: Erro ao deletar evidência
+ *         description: Erro ao deletar evidencia
  */
-router.delete('/:id',authenticate, authorize(['admin']),EvidenciaController.deleteEvidenciaById)
+router.delete('/:id', authenticate, authorize(['admin']), EvidenciaController.deleteEvidenciaById)
 
 /**
  * @swagger
- * /api/evidences:
+ * /api/evidencia:
  *   delete:
- *     summary: Deleta todas as evidências
- *     tags: [Evidência]
+ *     summary: Deleta todas as evidencias
+ *     tags: [evidencia]
  *     responses:
  *       200:
- *         description: Todas as evidências foram deletadas com sucesso
+ *         description: Todas as evidencias foram deletadas com sucesso
  *       500:
- *         description: Erro ao deletar todas as evidências
+ *         description: Erro ao deletar todas as evidencias
  */
-router.delete('/',authenticate,authorize(['admin']),EvidenciaController.deleteEvidencia)
+router.delete('/', authenticate, authorize(['admin']), EvidenciaController.deleteEvidencia)
 
 module.exports = router
+
