@@ -48,7 +48,7 @@ app.post('/api/gerar-laudo', async (req, res) => {
     }
 
     // Construção do prompt
-    let prompt = `Gere um laudo técnico e objetivo com base nas evidências a seguir, relacionadas ao caso '${case_id}'.\n\n`;
+    let prompt = `Gere um laudo técnico e objetivo com base nas evidências a seguir, relacionadas ao caso '${caso_id}'.\n\n`;
 
     evidencia.forEach((ev, index) => {
       prompt += `${index + 1}) Nome da Evidência: ${ev.nome_evidencia}\n`;
