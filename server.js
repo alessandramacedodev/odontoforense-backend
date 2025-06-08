@@ -15,7 +15,7 @@ const bancoodontoRouter = require('./src/routes/bancoodonto.route.js');
 const Evidencia = require('./src/models/evidencia.js'); // modelo Mongoose da evidência
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middlewares
 app.use(cors());
@@ -34,17 +34,17 @@ app.use('/api/bancoodonto', bancoodontoRouter);
 
 // ROTA EXTRA: GERAÇÃO DE LAUDO VIA IA
 app.post('/api/gerar-laudo', async (req, res) => {
-  const { case_id } = req.body;
+  const { caso_id } = req.body;
 
-  if (!case_id) {
-    return res.status(400).json({ error: "O campo 'case_id' é obrigatório." });
+  if (!caso_id) {
+    return res.status(400).json({ error: "O campo 'caso_id' é obrigatório." });
   }
 
   try {
-    const evidencia = await evidencia.find({ case_id });
+    const evidencia = await evidencia.find({ caso_id });
 
     if (!evidencia || evidencia.length === 0) {
-      return res.status(404).json({ error: `Nenhuma evidência encontrada para o caso '${case_id}'.` });
+      return res.status(404).json({ error: `Nenhuma evidência encontrada para o caso '${caso_id}'.` });
     }
 
     // Construção do prompt
@@ -74,7 +74,7 @@ app.post('/api/gerar-laudo', async (req, res) => {
       return res.status(500).json({ error: 'Erro ao processar resposta da IA.' });
     }
 
-    res.json({ case_id, laudo_gerado: textoGerado });
+    res.json({ caso_id, laudo_gerado: textoGerado });
 
   } catch (err) {
     console.error('Erro ao gerar laudo:', err);
