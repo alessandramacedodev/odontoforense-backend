@@ -62,6 +62,7 @@ MONGODB=
 JWT_SECRET= 
 JWT_EXPIRES_IN 
 CLOUDINARY_URL=
+GEMINI_API_KEY=
 ```
 
 ### 4. Inicie o servidor:
