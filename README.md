@@ -71,7 +71,7 @@ GEMINI_API_KEY=
 npm run dev
 ```
 
-A aplicação estará disponível em: https://odontoforense-backend-wur1.onrender.com/ e http://localhost:3001 de forma local
+A aplicação estará disponível em: http://localhost:3001  
 
 ---
 
