@@ -11,7 +11,7 @@ const options = {
         },
         servers: [
             {
-                url: 'https://odontoforense-backend-2.onrender.com/api-docs/#/'
+                url: 'https://odontoforense-backend-1.onrender.com/api-docs/#/'
             },
         ],
         components: {
